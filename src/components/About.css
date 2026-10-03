@@ -1,0 +1,109 @@
+.about__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.about__text p {
+  color: var(--color-text-soft);
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+.about__text h3 {
+  font-size: 1rem;
+  margin: 24px 0 14px;
+}
+
+.about__interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.snapshot-card {
+  padding: 28px;
+  position: sticky;
+  top: 96px;
+  transition: border-color var(--transition);
+}
+
+.snapshot-card:hover {
+  border-color: var(--color-border-hover);
+}
+
+.snapshot-card h3 {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.snapshot-card__degree {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.snapshot-card__institution {
+  color: var(--color-text-soft);
+  font-size: 0.88rem;
+  margin-top: 4px;
+}
+
+.snapshot-card__year {
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.snapshot-card__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0 18px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 20px;
+}
+
+.snapshot-card__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-soft);
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: border-color var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
+}
+
+.snapshot-card__tab:hover {
+  color: var(--color-text);
+  border-color: var(--color-border-hover);
+}
+
+.snapshot-card__tab--active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}
+
+.snapshot-card__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 34px;
+}
+
+@media (max-width: 900px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .snapshot-card {
+    position: static;
+  }
+}

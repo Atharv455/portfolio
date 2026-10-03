@@ -1,0 +1,149 @@
+.hero-workspace {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  perspective: 900px;
+}
+
+.hero-workspace--float {
+  animation: workspace-idle-float 6s ease-in-out infinite;
+}
+
+.hero-workspace__tilt {
+  position: relative;
+  transition: transform 0.25s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hero-workspace__particles {
+  position: absolute;
+  inset: -20px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-workspace__particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0;
+  animation: particle-drift linear infinite;
+}
+
+.hero-workspace__badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-soft);
+  box-shadow: var(--shadow-md);
+  z-index: 2;
+  transition: transform var(--transition-fast), border-color var(--transition-fast),
+    color var(--transition-fast), width var(--transition), border-radius var(--transition), background var(--transition);
+  overflow: hidden;
+  justify-content: center;
+}
+
+.hero-workspace__badge svg {
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.hero-workspace__badge:hover {
+  transform: translateY(-3px) scale(1.08);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.hero-workspace__badge-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  opacity: 0;
+  max-width: 0;
+  transition: opacity 0.2s ease-out, max-width 0.25s ease-out;
+}
+
+.hero-workspace__badge--revealed {
+  width: auto;
+  border-radius: 999px;
+  padding-right: 14px;
+  background: var(--color-bg-alt);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  justify-content: flex-start;
+}
+
+.hero-workspace__badge--revealed .hero-workspace__badge-label {
+  opacity: 1;
+  max-width: 140px;
+  margin-left: 6px;
+}
+
+@keyframes workspace-idle-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes particle-drift {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.6;
+  }
+  85% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-workspace--float {
+    animation: none;
+  }
+
+  .hero-workspace__tilt {
+    transition: none;
+  }
+
+  .hero-workspace__particle {
+    animation: none;
+    display: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .hero-workspace {
+    max-width: 480px;
+  }
+
+  .hero-workspace__badge {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-workspace__badge {
+    display: none;
+  }
+}

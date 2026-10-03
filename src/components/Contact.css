@@ -1,0 +1,48 @@
+.contact-card {
+  padding: 40px;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  transition: border-color var(--transition);
+}
+
+.contact-card:hover {
+  border-color: var(--color-border-hover);
+}
+
+.contact-card__intro {
+  color: var(--color-text-soft);
+  font-size: 1rem;
+}
+
+.contact-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.contact-card__resume-link {
+  color: var(--color-accent);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .contact-card {
+    padding: 28px 20px;
+  }
+
+  .contact-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .contact-buttons .btn {
+    width: 100%;
+  }
+}

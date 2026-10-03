@@ -1,0 +1,82 @@
+.edu-timeline-list {
+  display: flex;
+  flex-direction: column;
+  max-width: 560px;
+}
+
+.edu-timeline {
+  display: flex;
+  gap: 20px;
+}
+
+.edu-timeline__rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.edu-timeline__dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.edu-timeline__stub {
+  width: 2px;
+  flex: 1;
+  min-height: 24px;
+  background: var(--color-border);
+  margin: 8px 0;
+}
+
+.education-card {
+  padding: 24px 28px;
+  flex: 1;
+  margin-bottom: 20px;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.edu-timeline:last-child .education-card {
+  margin-bottom: 0;
+}
+
+.education-card:hover {
+  border-color: var(--color-accent);
+  transform: translateX(4px);
+}
+
+.education-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.education-card__institution {
+  color: var(--color-text-soft);
+  font-size: 0.9rem;
+}
+
+.education-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.education-card__year {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.education-card__score {
+  color: var(--color-text-soft);
+  font-size: 0.85rem;
+}

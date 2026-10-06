@@ -10,7 +10,7 @@ export const personal = {
   title: "Computer Science & Engineering Student | Full Stack Developer | Cloud & AI Enthusiast",
   intro:
     "Computer Science and Engineering student focused on building practical web applications, cloud-based solutions, and AI-driven projects.",
-  resumePath: "/resume.pdf",
+  resumePath: "/resume.pdf?v=20261006",
   // Pulled from public/resume.pdf (your actual resume document).
   email: "atharvkolapkar45@gmail.com",
   github: "https://github.com/Atharv455",

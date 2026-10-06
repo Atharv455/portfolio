@@ -21,8 +21,10 @@
   }
 }
 
+/* Featured cards keep the same grid cell as every other card; they stand out
+   through the badge and an accent border instead of extra width. */
 .project-card--featured {
-  grid-column: span 2;
+  border-color: rgba(var(--color-accent-rgb), 0.35);
 }
 
 .project-card__visual {
@@ -34,10 +36,6 @@
   overflow: hidden;
   background: linear-gradient(135deg, var(--color-accent-soft), var(--color-bg-alt));
   border-bottom: 1px solid var(--color-border);
-}
-
-.project-card--featured .project-card__visual {
-  height: 200px;
 }
 
 .project-card__initial {
@@ -73,6 +71,7 @@
   gap: 8px;
   padding: 24px;
   width: 100%;
+  flex: 1;
 }
 
 .project-card__featured-badge {
@@ -91,10 +90,6 @@
 
 .project-card__body h3 {
   font-size: 1.1rem;
-}
-
-.project-card--featured .project-card__body h3 {
-  font-size: 1.3rem;
 }
 
 .project-card__tagline {
@@ -135,6 +130,13 @@
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 6px;
+}
+
+/* On the card (not in the modal), pin actions to the bottom so cards in the
+   same grid row line up regardless of content length. */
+.project-card__body .project-card__actions {
+  margin-top: auto;
+  padding-top: 6px;
 }
 
 .project-card__details-btn {
@@ -372,12 +374,6 @@
   .project-modal-overlay,
   .project-modal {
     animation: none;
-  }
-}
-
-@media (max-width: 900px) {
-  .project-card--featured {
-    grid-column: span 1;
   }
 }
 

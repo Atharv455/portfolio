@@ -47,7 +47,49 @@ export const skillGroups = [
 // `{ label, status, phase }` objects. `status` is "implemented",
 // "in-development" or "planned" and is rendered as a label, so planned work
 // is never presented as finished.
+//
+// Array order is display order.
 export const projects = [
+  {
+    id: "lumora-jewels",
+    name: "Lumora Jewels",
+    tagline: "Jewelry E-Commerce Web Application",
+    category: "Full Stack",
+    featured: true,
+    description:
+      "Full-stack jewelry e-commerce application built with React.js, JavaScript, Firebase Authentication, and Cloud Firestore.",
+    // High-level data flow derived from the tech stack/features already listed
+    // below - not new information, just organized as a flow summary.
+    architecture: [
+      "React (Vite) frontend renders the UI and routes via React Router",
+      "Context API manages auth, cart, and wishlist state across the app",
+      "Firebase Authentication handles user login/signup",
+      "Cloud Firestore stores products, carts, orders, and user roles",
+      "Firestore security rules enforce role-based access (admin vs customer)",
+    ],
+    features: [
+      "User registration and login",
+      "Firebase Authentication",
+      "Product browsing",
+      "Product search",
+      "Category filtering",
+      "Price filtering",
+      "Product details",
+      "Shopping cart",
+      "Wishlist",
+      "Checkout",
+      "Order history",
+      "Order status tracking",
+      "Admin dashboard",
+      "Product CRUD operations",
+      "Role-based access control",
+      "Firestore security rules",
+      "Responsive UI",
+    ],
+    techStack: ["React.js", "JavaScript", "Vite", "Firebase Authentication", "Cloud Firestore", "React Router", "Context API"],
+    liveDemo: "https://lumora-jewels.vercel.app/",
+    github: "https://github.com/Atharv455/lumora-jewels",
+  },
   {
     id: "resume-interview-intelligence",
     name: "AI-Powered Resume & Interview Intelligence Platform",
@@ -173,46 +215,6 @@ export const projects = [
     liveDemo: null,
     // NEEDS YOUR INPUT: add the GitHub URL once the lab repository is pushed.
     github: null,
-  },
-  {
-    id: "lumora-jewels",
-    name: "Lumora Jewels",
-    tagline: "Jewelry E-Commerce Web Application",
-    category: "Full Stack",
-    featured: true,
-    description:
-      "Full-stack jewelry e-commerce application built with React.js, JavaScript, Firebase Authentication, and Cloud Firestore.",
-    // High-level data flow derived from the tech stack/features already listed
-    // below - not new information, just organized as a flow summary.
-    architecture: [
-      "React (Vite) frontend renders the UI and routes via React Router",
-      "Context API manages auth, cart, and wishlist state across the app",
-      "Firebase Authentication handles user login/signup",
-      "Cloud Firestore stores products, carts, orders, and user roles",
-      "Firestore security rules enforce role-based access (admin vs customer)",
-    ],
-    features: [
-      "User registration and login",
-      "Firebase Authentication",
-      "Product browsing",
-      "Product search",
-      "Category filtering",
-      "Price filtering",
-      "Product details",
-      "Shopping cart",
-      "Wishlist",
-      "Checkout",
-      "Order history",
-      "Order status tracking",
-      "Admin dashboard",
-      "Product CRUD operations",
-      "Role-based access control",
-      "Firestore security rules",
-      "Responsive UI",
-    ],
-    techStack: ["React.js", "JavaScript", "Vite", "Firebase Authentication", "Cloud Firestore", "React Router", "Context API"],
-    liveDemo: "https://lumora-jewels.vercel.app/",
-    github: "https://github.com/Atharv455/lumora-jewels",
   },
   {
     id: "aws-deployment",

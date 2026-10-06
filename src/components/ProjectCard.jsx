@@ -3,10 +3,27 @@ import { FiExternalLink, FiGithub, FiChevronRight, FiX, FiLayers } from "react-i
 import { useReveal } from "../hooks/useReveal";
 import "./ProjectCard.css";
 
+const FEATURE_STATUS_LABELS = {
+  implemented: "Implemented",
+  "in-development": "In Development",
+  planned: "Planned",
+};
+
+function featureStatusLabel(feature) {
+  if (feature.status === "planned" && feature.phase) return `Coming in Phase ${feature.phase}`;
+  return FEATURE_STATUS_LABELS[feature.status];
+}
+
 function ProjectCard({ project }) {
   const revealRef = useReveal();
   const [showDetails, setShowDetails] = useState(false);
-  const hasDetails = project.features?.length > 0 || project.event || project.architecture?.length > 0;
+  const hasDetails =
+    project.features?.length > 0 ||
+    project.event ||
+    project.architecture?.length > 0 ||
+    project.highlights?.length > 0 ||
+    project.diagram ||
+    project.deploymentModes?.length > 0;
   const initial = project.name.charAt(0);
 
   useEffect(() => {
@@ -45,8 +62,9 @@ function ProjectCard({ project }) {
         </div>
 
         <div className="project-card__body">
-          {project.featured && <span className="project-card__featured-badge">Featured Project</span>}
+          {project.featured && <span className="project-card__featured-badge">{project.badge ?? "Featured Project"}</span>}
           <h3>{project.name}</h3>
+          {project.status && <span className="project-card__status">Status: {project.status}</span>}
           <p className="project-card__tagline">{project.tagline}</p>
           <p className="project-card__description">{project.description}</p>
 
@@ -98,6 +116,7 @@ function ProjectCard({ project }) {
             </button>
             <h3 id="project-modal-title">{project.name}</h3>
             <p className="project-card__tagline">{project.tagline}</p>
+            {project.status && <span className="project-card__status">Status: {project.status}</span>}
 
             {project.event && (
               <p className="project-card__meta">
@@ -124,10 +143,51 @@ function ProjectCard({ project }) {
               <>
                 <h4>Features</h4>
                 <ul className="project-modal__features">
-                  {project.features.map((feature) => (
-                    <li key={feature}>{feature}</li>
+                  {project.features.map((feature) =>
+                    typeof feature === "string" ? (
+                      <li key={feature}>{feature}</li>
+                    ) : (
+                      <li key={feature.label}>
+                        {feature.label}{" "}
+                        <span className={`feature-status feature-status--${feature.status}`}>{featureStatusLabel(feature)}</span>
+                      </li>
+                    ),
+                  )}
+                </ul>
+              </>
+            )}
+
+            {project.highlights?.length > 0 && (
+              <>
+                <h4>Engineering Highlights</h4>
+                <ul className="project-modal__highlights">
+                  {project.highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
                   ))}
                 </ul>
+              </>
+            )}
+
+            {project.diagram && (
+              <>
+                <h4><FiLayers size={14} /> Architecture</h4>
+                <pre className="project-modal__diagram" aria-label="Architecture diagram">{project.diagram}</pre>
+              </>
+            )}
+
+            {project.deploymentModes?.length > 0 && (
+              <>
+                <h4>Deployment Modes</h4>
+                <div className="project-modal__modes">
+                  {project.deploymentModes.map((mode) => (
+                    <div key={mode.name} className="project-modal__mode">
+                      <strong>{mode.name}</strong>
+                      <p className="project-modal__mode-flow">{mode.flow.join(" → ")}</p>
+                      {mode.note && <p className="project-modal__mode-note">{mode.note}</p>}
+                    </div>
+                  ))}
+                </div>
+                {project.deploymentNote && <p className="project-modal__mode-note">{project.deploymentNote}</p>}
               </>
             )}
 

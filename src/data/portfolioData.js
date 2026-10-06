@@ -43,7 +43,137 @@ export const skillGroups = [
   { category: "AI / ML", skills: ["Machine Learning Fundamentals", "Generative AI", "LangChain", "Google Gemini / GenAI"] },
 ];
 
+// Feature entries may be plain strings (shown as-is) or
+// `{ label, status, phase }` objects. `status` is "implemented",
+// "in-development" or "planned" and is rendered as a label, so planned work
+// is never presented as finished.
 export const projects = [
+  {
+    id: "resume-interview-intelligence",
+    name: "AI-Powered Resume & Interview Intelligence Platform",
+    tagline: "Career Intelligence Platform",
+    category: "AI/Full Stack",
+    featured: true,
+    badge: "Flagship Project",
+    // Keep in sync with the "Current status" section of the project README.
+    status: "In Development · Phase 1 of 20 complete",
+    description:
+      "An AI-powered career intelligence platform that analyzes resumes, matches candidates with job descriptions, identifies skill gaps, and generates grounded interview preparation using semantic search and AI.",
+    highlights: [
+      "Portable architecture: the same Docker images run locally, on a free host, and on AWS. Only environment variables change.",
+      "AI service separation: a stateless, internal FastAPI service handles parsing, embeddings and LLM calls behind provider interfaces, and the Spring Boot core API owns auth, business rules and data.",
+      "Semantic search: skill matching will combine exact, alias and taxonomy matches with pgvector embedding similarity, and every match will cite resume evidence.",
+      "Structured scoring: scores come from deterministic, versioned rules, not from an LLM. LLM output is schema-validated and checked against the resume.",
+      "Security first: deny-by-default Spring Security, an internal-token-protected AI service, and gitleaks secret scanning in CI.",
+      "AWS/free flexibility: manual AWS activation with automatic traffic fallback to the free backend when AWS is unavailable.",
+    ],
+    diagram: [
+      "                 React / Vercel",
+      "                       |",
+      "                       v",
+      "                Cloudflare Worker",
+      "                  /           \\",
+      "                 /             \\",
+      "          AWS Backend       Free Backend",
+      "             EC2               Host",
+      "              |                 |",
+      "         Spring Boot       Spring Boot",
+      "              |",
+      "           FastAPI",
+      "              |",
+      "        PostgreSQL",
+      "         + pgvector",
+      "              |",
+      "             S3",
+    ].join("\n"),
+    deploymentModes: [
+      {
+        name: "AWS Demo Mode",
+        flow: ["Vercel", "Cloudflare", "AWS EC2", "Docker", "Spring Boot + FastAPI"],
+        note: "Started and stopped manually by the developer for demos.",
+      },
+      {
+        name: "Free Mode",
+        flow: ["Vercel", "Cloudflare", "Free Backend", "Spring Boot + FastAPI"],
+        note: "Always available. Serves traffic whenever AWS is unavailable.",
+      },
+    ],
+    deploymentNote:
+      "The Cloudflare router holds no AWS credentials and never starts EC2. It only checks AWS health and routes traffic to the free backend when AWS is unavailable.",
+    features: [
+      { label: "React, Spring Boot and FastAPI service skeleton with health and readiness checks", status: "implemented" },
+      { label: "Deny-by-default Spring Security and exact-origin CORS baseline", status: "implemented" },
+      { label: "Internal-token-protected AI service, not exposed publicly", status: "implemented" },
+      { label: "LLM and embedding provider interfaces with test fakes", status: "implemented" },
+      { label: "Health-checked AWS → free fallback router logic (unit-tested, not yet deployed)", status: "implemented" },
+      { label: "Docker Compose and CI pipeline (with gitleaks secret scanning) defined, not yet run end-to-end", status: "implemented" },
+      { label: "Resume PDF parsing and validation", status: "planned", phase: 3 },
+      { label: "Skill extraction with grounding filter", status: "planned", phase: 4 },
+      { label: "Resume quality scoring and guest analysis", status: "planned", phase: 5 },
+      { label: "Authentication (Spring Security + JWT) and usage limits", status: "planned", phase: 7 },
+      { label: "Job description matching", status: "planned", phase: 9 },
+      { label: "Semantic similarity using pgvector", status: "planned", phase: 10 },
+      { label: "Skill-gap analysis and Job Match Score", status: "planned", phase: 11 },
+      { label: "Grounded, resume/project-based interview questions", status: "planned", phase: 13 },
+      { label: "Mock interview and answer evaluation", status: "planned", phase: 14 },
+      { label: "Candidate dashboard and progress history", status: "planned", phase: 15 },
+      { label: "AWS demo environment (EC2, S3)", status: "planned", phase: 17 },
+    ],
+    techStack: [
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "Spring Boot 3",
+      "Java 21",
+      "Spring Security",
+      "JWT",
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "Docker",
+      "Docker Compose",
+      "Vercel",
+      "AWS EC2",
+      "AWS S3",
+      "Cloudflare Workers",
+    ],
+    liveDemo: null,
+    // NEEDS YOUR INPUT: add the GitHub URL once the repository is pushed.
+    github: null,
+  },
+  {
+    id: "infrastructure-troubleshooting-lab",
+    name: "Infrastructure & Server Troubleshooting Lab",
+    tagline: "Linux, Networking & AWS Lab",
+    category: "Cloud",
+    // NEEDS YOUR INPUT: change this (and the feature statuses) once the lab
+    // write-up and evidence are in the repository.
+    status: "Lab write-up in progress",
+    description:
+      "A hands-on infrastructure and server troubleshooting lab focused on deploying an Apache web server on a Linux-based AWS EC2 instance and diagnosing connectivity issues.",
+    architecture: [
+      "Browser sends an HTTP request to the EC2 instance's public IP or DNS name",
+      "The security group allows inbound 80 (HTTP) and 22 (SSH from my IP only)",
+      "The Linux host firewall and network stack accept the connection",
+      "Apache (httpd/apache2), managed by systemd, listens on port 80",
+      "Apache serves content from the document root and writes access and error logs",
+    ],
+    features: [
+      "Launching a Linux EC2 instance and connecting over SSH with key-based auth",
+      "Installing, enabling and configuring Apache with systemctl",
+      "Configuring security group inbound rules",
+      "Diagnosing connectivity: security groups, stopped services, wrong ports, firewalls, DNS",
+      "TCP/IP diagnostics with ping, curl, ss, traceroute, dig and nc",
+      "Reading Apache logs and journalctl output",
+      "Linux file permissions, process and service management",
+      "Documented break/fix scenarios: symptom → checks → root cause → fix",
+    ],
+    techStack: ["AWS EC2", "Linux", "Apache", "Bash", "TCP/IP", "Security Groups", "systemd", "SSH"],
+    liveDemo: null,
+    // NEEDS YOUR INPUT: add the GitHub URL once the lab repository is pushed.
+    github: null,
+  },
   {
     id: "lumora-jewels",
     name: "Lumora Jewels",
